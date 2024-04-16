@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { BarChart } from "react-native-chart-kit-with-pressable-bar-graph";
-import { colors } from "../colors";
+import { chartStyle, colors } from "../colors";
 
 export default function Bchart() {
   const labels = ["January", "February", "March", "April", "May", "June"];
@@ -56,10 +56,7 @@ export default function Bchart() {
               borderRadius: 16,
             },
           }}
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
-          }}
+          style={chartStyle}
           onDataPointClick={handleDataPointClick}
         />
         {overlayVisible && (
@@ -79,7 +76,6 @@ export default function Bchart() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

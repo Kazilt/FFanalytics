@@ -1,16 +1,19 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Bchart from "./components/Bchart";
 import Pchart from "./components/Pchart";
+import { colors } from "./colors";
 export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Bchart />
-        <Pchart />
-        <Bchart />
+        <ScrollView>
+          <Text>Open up App.js to start working on your app!</Text>
+          <Bchart />
+          <Pchart />
+          <Bchart />
+        </ScrollView>
         <StatusBar style="auto" />
       </SafeAreaView>
     </SafeAreaProvider>
@@ -20,7 +23,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.grey,
     alignItems: "center",
     justifyContent: "center",
   },

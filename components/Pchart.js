@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
 import { PieChart } from "react-native-chart-kit";
-import { colors } from "../colors";
+import { chartStyle, colors } from "../colors";
 
 export default function Pchart() {
   const data = [
@@ -62,10 +62,7 @@ export default function Pchart() {
               borderRadius: 16,
             },
           }}
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
-          }}
+          style={chartStyle}
         />
       </View>
     </View>
@@ -75,7 +72,6 @@ export default function Pchart() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
