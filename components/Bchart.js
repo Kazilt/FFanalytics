@@ -8,13 +8,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { BarChart } from "react-native-chart-kit-with-pressable-bar-graph";
+import { colors } from "../colors";
 
 export default function Bchart() {
   const labels = ["January", "February", "March", "April", "May", "June"];
   const [a, setA] = useState(0);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [overlayData, setOverlayData] = useState({});
-
+  const data = [
+    a,
+    Math.random() * 100,
+    Math.random() * 100,
+    Math.random() * 100,
+    Math.random() * 100,
+    Math.random() * 100,
+  ];
   const handleDataPointClick = ({ index, value }) => {
     setOverlayData({ value, title: labels[index] });
     setOverlayVisible(true);
@@ -41,18 +49,7 @@ export default function Bchart() {
         <BarChart
           data={{
             labels: labels,
-            datasets: [
-              {
-                data: [
-                  a,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
-              },
-            ],
+            datasets: [{ data: data }],
           }}
           width={Dimensions.get("window").width}
           height={220}
@@ -60,11 +57,12 @@ export default function Bchart() {
           yAxisSuffix=""
           yAxisInterval={1}
           chartConfig={{
-            backgroundColor: "#e26a00",
-            backgroundGradientFrom: "#fb8c00",
-            backgroundGradientTo: "#ffa726",
-            decimalPlaces: 2,
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            backgroundGradientFrom: colors.darkblue,
+            backgroundGradientTo: colors.darkblue,
+            decimalPlaces: 0,
+            fillShadowGradient: colors.red,
+            fillShadowGradientOpacity: 1,
+            color: () => `rgba(255, 255, 255, 1)`,
             labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16,
