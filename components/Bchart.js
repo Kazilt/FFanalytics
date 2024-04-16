@@ -12,11 +12,10 @@ import { colors } from "../colors";
 
 export default function Bchart() {
   const labels = ["January", "February", "March", "April", "May", "June"];
-  const [a, setA] = useState(0);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [overlayData, setOverlayData] = useState({});
   const data = [
-    a,
+    Math.random() * 100,
     Math.random() * 100,
     Math.random() * 100,
     Math.random() * 100,
@@ -34,18 +33,7 @@ export default function Bchart() {
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-
       <View>
-        <Button
-          title="Increment"
-          onPress={() => {
-            setA((prev) => {
-              console.log(a);
-              return prev + 1;
-            });
-          }}
-        ></Button>
         <BarChart
           data={{
             labels: labels,
