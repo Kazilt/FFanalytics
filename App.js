@@ -10,9 +10,9 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <Text>Open up App.js to start working on your app!</Text>
-          <Bchart />
-          <Pchart />
-          <Bchart />
+          <Bchart title="First Graph: " />
+          <Pchart title="Second Graph: " />
+          <Bchart title="Third Graph: " />
         </ScrollView>
         <StatusBar style="auto" />
       </SafeAreaView>

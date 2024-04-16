@@ -9,19 +9,14 @@ import {
 } from "react-native";
 import { BarChart } from "react-native-chart-kit-with-pressable-bar-graph";
 import { chartStyle, colors } from "../colors";
+import { barProcess } from "../processData";
 
-export default function Bchart() {
-  const labels = ["January", "February", "March", "April", "May", "June"];
+export default function Bchart(props) {
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [overlayData, setOverlayData] = useState({});
-  const data = [
-    Math.random() * 100,
-    Math.random() * 100,
-    Math.random() * 100,
-    Math.random() * 100,
-    Math.random() * 100,
-    Math.random() * 100,
-  ];
+
+  const raw = { ONE: 1, TWO: 2, Three: 3, Four: 4, Five: 5, Six: 6, Seven: 7 };
+  const [labels, data] = barProcess(raw, 5);
   const handleDataPointClick = ({ index, value }) => {
     setOverlayData({ value, title: labels[index] });
     setOverlayVisible(true);
@@ -33,42 +28,42 @@ export default function Bchart() {
 
   return (
     <View style={styles.container}>
-      <View>
-        <BarChart
-          data={{
-            labels: labels,
-            datasets: [{ data: data }],
-          }}
-          width={Dimensions.get("window").width}
-          height={220}
-          yAxisLabel=""
-          yAxisSuffix=""
-          yAxisInterval={1}
-          chartConfig={{
-            backgroundGradientFrom: colors.darkblue,
-            backgroundGradientTo: colors.darkblue,
-            decimalPlaces: 0,
-            fillShadowGradient: colors.red,
-            fillShadowGradientOpacity: 1,
-            color: () => `rgba(255, 255, 255, 1)`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-          }}
-          style={chartStyle}
-          onDataPointClick={handleDataPointClick}
-        />
-        {overlayVisible && (
-          <TouchableOpacity style={styles.overlay} onPress={closeOverlay}>
-            <View style={styles.overlayContent}>
-              <Text style={styles.overlayText}>
-                Value: {overlayData.value}, Title: {overlayData.title}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      </View>
+      <Text style={{ color: "white", fontSize: 40 }}>{props.title}</Text>
+      <BarChart
+        data={{
+          labels: labels,
+          datasets: [{ data: data }],
+        }}
+        fromZero
+        width={Dimensions.get("window").width}
+        height={220}
+        yAxisLabel=""
+        yAxisSuffix=""
+        yAxisInterval={1}
+        chartConfig={{
+          backgroundGradientFrom: colors.darkblue,
+          backgroundGradientTo: colors.darkblue,
+          decimalPlaces: 0,
+          fillShadowGradient: colors.red,
+          fillShadowGradientOpacity: 1,
+          color: () => `rgba(255, 255, 255, 1)`,
+          labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          style: {
+            borderRadius: 16,
+          },
+        }}
+        style={chartStyle}
+        onDataPointClick={handleDataPointClick}
+      />
+      {overlayVisible && (
+        <TouchableOpacity style={styles.overlay} onPress={closeOverlay}>
+          <View style={styles.overlayContent}>
+            <Text style={styles.overlayText}>
+              Title: {overlayData.title}, Value: {overlayData.value},
+            </Text>
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
