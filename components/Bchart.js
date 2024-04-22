@@ -16,9 +16,9 @@ export default function Bchart(props) {
   const [overlayData, setOverlayData] = useState({});
 
   const raw = { ONE: 1, TWO: 2, Three: 3, Four: 4, Five: 5, Six: 6, Seven: 7 };
-  const [labels, data] = barProcess(raw, 5);
+  const [labels, data, orig_labels] = barProcess(raw, 5);
   const handleDataPointClick = ({ index, value }) => {
-    setOverlayData({ value, title: labels[index] });
+    setOverlayData({ value, title: orig_labels[index] });
     setOverlayVisible(true);
   };
 
@@ -71,7 +71,6 @@ export default function Bchart(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
   },
   overlay: {

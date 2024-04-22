@@ -37,7 +37,6 @@ export default function Pchart(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
   },
   overlay: {
