@@ -15,7 +15,7 @@ export default function Bchart(props) {
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [overlayData, setOverlayData] = useState({});
 
-  const raw = { ONE: 1, TWO: 2, Three: 3, Four: 4, Five: 5, Six: 6, Seven: 7 };
+  const raw = props.data;
   const [labels, data, orig_labels] = barProcess(raw, 5);
   const handleDataPointClick = ({ index, value }) => {
     setOverlayData({ value, title: orig_labels[index] });
